@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard - Blog Management</title>
+        <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+    </head>
+    <body>
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+        <div class="admin-container">
+            <div class="add-new">
+                <a href="{% url 'blog:new'  %}" class="btn">Add New Blog</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Blog Title</th>
+                        <th>Date Published</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for blog in all_blogs %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'blog:article' blog.id %}"
+                                >{{ blog.article_title }}</a
+                            >
+                        </td>
+                        <td>{{ blog.pub_date }}</td>
+                        <td>
+                            <a href="{% url 'blog:edit' blog.id %}" class="btn"
+                                >Edit</a
+                            >
+
+                            <a
+                                href="{% url 'blog:delete' blog.id  %}"
+                                class="btn btn-danger"
+                                >Delete</a
+                            >
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p style="text-align: center">
+                &copy; 2024 My Blog Admin. All rights reserved.
+            </p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel - Create Blog Post</title>
+        <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+    </head>
+    <body>
+        <header>
+            <h1>Admin Panel</h1>
+        </header>
+
+        <div class="update-container">
+            <h2>New Article</h2>
+            <form action="{% url 'blog:new' %}" method="POST">
+                {% csrf_token %}
+                <!-- Title Input -->
+                <label for="title">Blog Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter blog title"
+                    required
+                />
+
+                <!-- Date Input -->
+                <label for="datetime">Date Published</label>
+                <input
+                    type="datetime-local"
+                    id="datetime"
+                    name="datetime"
+                    required
+                />
+
+                <!-- Content Textarea -->
+                <label for="content">Blog Content</label>
+                <textarea
+                    id="content"
+                    name="content"
+                    placeholder="Enter the blog content"
+                    required
+                ></textarea>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">PUBLISH</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Admin Panel. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Post Title 1 - My Blog</title>
+        <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+    </head>
+    <body>
+        <header>
+            <h1>My Blog</h1>
+        </header>
+
+        <div class="article-container">
+            <h1 class="article-title">{{blog.article_title}}</h1>
+            <p class="article-date">Published on: {{ blog.pub_date }}</p>
+
+            <div class="article-content">
+                <p>{{ blog.article_content }}</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
