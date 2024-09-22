@@ -4,11 +4,16 @@ from .models import Article
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.utils.dateparse import parse_datetime
+from django.core.paginator import Paginator
 # Create your views here.
 def index(request):
     all_blogs = Article.objects.all()
+    paginator = Paginator(all_blogs, 3)
+    
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-		"all_blogs":all_blogs
+		"all_blogs":page_obj
 	}
     
     return render(request, 'blog/index.html', context)
